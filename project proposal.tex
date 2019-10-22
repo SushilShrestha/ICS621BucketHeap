@@ -1,0 +1,43 @@
+%%
+%% Author: sushilsh
+%% 10/17/19
+%%
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage{a4wide}
+\title{Project Proposal for ICS 622}
+\author{Sushil Shrestha}
+\date{\today}
+% Document
+\begin{document}
+    \maketitle
+    \section{Overview}
+    As the final project for Analysis of algorithm (ICS 622), I want to implement the bucket heap data structure. Bucket heap are cache-oblivious priority queue that supports efficient weak decrease-key operation [Brodal et al., 2004].
+
+    Most of classic algorithms doesn’t take the I/O operations into consideration. In theory, they might have optimal solutions, but in practice they suffer from the I/O operations. Taking I/O operations helps to achieve algorithms perform better because memory have different speeds of data retrieval and ignoring the speed of data retrieval might adversely affect the algorithms in runtime.
+
+    To solve that problem, algorithms that take an account of caching(or memory hierarchy) are preferred. The cache-oblivious data structure make optimal use of the cache hierarchy present in modern computer architecture and try to reduce the I/O operations to disk.  The cache-oblivious data structures aren’t aware of the number of blocks or memory available, hence are more general.
+
+    \section{Project Overview}
+    For the final project, my end goal will be to replicate the experiments in [Brodal et al., 2004];  implement the bucket heap data structure and use the data structure to solve the breadth first search and shortest path problems. Depending on time constraints, my next goal will be to parallelize it and compare the results of the algorithms.
+
+    \section{Project Timeline}
+    October 18 - October 31 - Reading the paper and understanding the data structure\\
+    November 1 - November 23 - Implement the bucket heap and check results\\
+    November 24 - December 6 - Project report and project wrapup\\
+
+
+
+\begin{thebibliography}{9}
+    \bibitem[Brodal et~al., 2004]{brodal2004cache}
+    Brodal, G.~S., Fagerberg, R., Meyer, U., and Zeh, N. (2004).
+    \newblock Cache-oblivious data structures and algorithms for undirected
+    breadth-first search and shortest paths.
+    \newblock In {\em Scandinavian Workshop on Algorithm Theory}, pages 480--492.
+    Springer.
+\end{thebibliography}
+
+\end{document}
