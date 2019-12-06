@@ -152,14 +152,6 @@ int testUpdateSignals(){
     bh->update(12, 0);
     assert(bh->getIthBucket(1)->getItem(0).key == 12);
 
-    // push signal
-
-    // delete signal
-//    bh->deleteItem(12);
-//    assert(bh->getIthBucket(1)->getItem(0).key == 13);
-//    assert(bh->getIthBucket(1)->getSize() == 1);
-
-
 }
 
 
@@ -170,6 +162,7 @@ int testBucketHeap(){
 
     //    testUpdateSignals();
 
+    assert(bh->isEmpty());
 
     bh->update(3, 19);
     bh->update(4, 20);
@@ -187,6 +180,8 @@ int testBucketHeap(){
     bh->update(17, 1);
     bh->update(4, 200);
 
+    assert(!bh->isEmpty());
+
     bh->getIthSignal(1)->printItems();
     bh->getIthSignal(2)->printItems();
 
@@ -202,5 +197,7 @@ int testBucketHeap(){
     cout<<bh->deleteMin().key <<endl;
     cout<<bh->deleteMin().key <<endl;
     cout<<bh->deleteMin().key <<endl;
+
+    assert(bh->isEmpty());
 
 }

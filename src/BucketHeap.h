@@ -1,7 +1,3 @@
-//
-// Created by Sushil Shrestha on 11/23/19.
-//
-
 #ifndef ICS621_BUCKETHEAP_H
 #define ICS621_BUCKETHEAP_H
 
@@ -42,6 +38,11 @@ public:
     int getMaxPriorityOnBucket(int i, int q);
 
     int getNonEmptyBucketSignalIndex();
+
+    bool isEmpty(){
+        return getIthBucket(1)->isEmpty();
+    }
+    void maintainNumBuckets();
 
 };
 

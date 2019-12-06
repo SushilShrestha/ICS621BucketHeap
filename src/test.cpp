@@ -1,7 +1,3 @@
-//
-// Created by Sushil Shrestha on 11/23/19.
-//
-
 int numVertices = 6;
 int startVertex = 0;
 MinHeap minHeap(numVertices);

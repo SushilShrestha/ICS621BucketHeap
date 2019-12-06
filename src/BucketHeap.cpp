@@ -5,8 +5,6 @@ BucketHeap::BucketHeap() {
     q = 1;
     BucketSignal* temp = new BucketSignal(1);
     bucketSignals.push_back(*temp);
-//    temp = new BucketSignal(2);
-//    bucketSignals.push_back(*temp);
 }
 
 void BucketHeap::update(int x, int p) {
@@ -114,7 +112,6 @@ void BucketHeap::empty(int i) {
         empty(i+1);
     }
 
-//    Si->deleteHandledSignals();
 }
 
 void BucketHeap::fill(int i){
@@ -145,6 +142,7 @@ void BucketHeap::fill(int i){
 
     // step 4
     q = getNonEmptyBucketSignalIndex();
+    maintainNumBuckets();
 }
 
 MinHeap* BucketHeap::getIthBucket(int i){
@@ -195,4 +193,10 @@ int BucketHeap::getNonEmptyBucketSignalIndex(){
         counter++;
     }
     return maxIndex;
+}
+
+void BucketHeap::maintainNumBuckets() {
+    while(q > bucketSignals.size()){
+        bucketSignals.pop_back();
+    }
 }

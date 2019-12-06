@@ -96,7 +96,7 @@ int MinHeap::getMaxPriority() {
 }
 
 int MinHeap::getIthSmallestPriority(int i){
-    assert(i <= getSize());
+
     MinHeap mh(getSize());
     for (int j = 0; j < getSize(); j++){
         mh.insertKey(harr[j].key, harr[j].priority);
@@ -104,6 +104,7 @@ int MinHeap::getIthSmallestPriority(int i){
 
     int priority;
     for (int j = 1; j <= i; j++){
+        if (mh.isEmpty()) break;
         priority = mh.extractMin().priority;
     }
     return priority;
@@ -133,10 +134,9 @@ int MinHeap::moveSimilarPriorityTo(Signals *SiPlus1, int priority, int itemsToMo
 int MinHeap::moveSmallerPriorityFromBucket(MinHeap *BiPlus1, int priority, int i) {
     int totalItems = BiPlus1->getSize();
     for (int j = 0; j < totalItems; j++){
-        if (getSize() == pow(2, 2*i)){
+        if (getSize() == pow(2, 2*i) or BiPlus1->isEmpty()){
             break;
         }
-        assert(getSize() < pow(2, 2*i));
 
         if (BiPlus1->getItem(j).priority < priority){
             insertKey(BiPlus1->getItem(j).key, BiPlus1->getItem(j).priority);

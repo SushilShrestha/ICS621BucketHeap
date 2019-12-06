@@ -2,8 +2,11 @@
 #include <assert.h>
 #include <list>
 #include <chrono>
+#include <fstream>
 
-#include "MinHeap.h"
+#include "../BucketHeap.h"
+#include "../MinHeap.h"
+#include "../BucketSignal.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -15,19 +18,19 @@ struct AdjacentNode {
 };
 
 int main(){
-    struct Vertex currentVertex;
+    struct BucketItem currentVertex;
     int temp;
 
-    int startVertex = 0;
+    int startVertex = 0, destination = 4;
     int numVertices, numEdges;
     int s, v, w;
     string line;
 
+    BucketHeap* bucketHeap = new BucketHeap();
+
     cin >> numVertices >> numEdges;
 
-    MinHeap minHeap(numVertices);
     int* distance = new int[numVertices];
-
     list<struct AdjacentNode>* adjList = new list<struct AdjacentNode>[numVertices];
 
     for (int i = 0 ; i < numEdges ; i++){
@@ -38,21 +41,23 @@ int main(){
     auto start = high_resolution_clock::now();
     for (int i = 0 ; i < numVertices ; i++) {
         if (i == startVertex){
-            minHeap.insertKey(i, 0);
+            bucketHeap->update(i, 0);
             distance[i] = 0;
         } else {
-            minHeap.insertKey(i, INT_MAX-1);
+            bucketHeap->update(i, INT_MAX-1);
             distance[i] = INT_MAX-1;
         }
     }
 
-    while (!minHeap.isEmpty()) {
-        currentVertex = minHeap.extractMin();
-        for (struct AdjacentNode n : adjList[currentVertex.index]) {
-            if (distance[n.terminalVertex] > currentVertex.distance + n.weight) {
-                distance[n.terminalVertex] = currentVertex.distance + n.weight;
-                temp = minHeap.searchKey(n.terminalVertex);
-                minHeap.decreaseKey(temp, distance[n.terminalVertex]);
+    while (!bucketHeap->isEmpty()) {
+        currentVertex = bucketHeap->deleteMin();
+
+        if (currentVertex.key == destination) break;
+
+        for (struct AdjacentNode n : adjList[currentVertex.key]) {
+            if (distance[n.terminalVertex] > currentVertex.priority + n.weight) {
+                distance[n.terminalVertex] = currentVertex.priority + n.weight;
+                bucketHeap->update(n.terminalVertex, distance[n.terminalVertex]);
             }
         }
     }

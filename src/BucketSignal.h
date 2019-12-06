@@ -10,7 +10,6 @@
 using namespace std;
 
 
-
 /**
  * Bucket Signal implementation
  */
