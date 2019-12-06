@@ -1,5 +1,6 @@
-# Implementation and Analysis of Bucket Heap 
+# Implementation of Cache-Oblivious Priority Queue to Solve Single Source Shortest Path Problem 
 ## Final Project for ICS 621: Analysis of Algorithms
+### Directories Structure
 - **src** : contains all the source code and test cases
 - **ProjectProposal** : contains latex file for project proposal
 - **FinalReport** : contains latex file for final report proposal
